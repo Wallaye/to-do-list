@@ -1,0 +1,12 @@
+image: node:14
+
+pages:
+  stage: deploy
+  script:
+    - npm install
+    - npm run publish
+  artifacts:
+    paths:
+      - public # GitLab pages serve from a 'public' directory
+  only:
+    - master
