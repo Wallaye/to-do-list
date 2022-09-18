@@ -12,13 +12,9 @@ import {PageView} from './Page.view'
 export function AppWindow(
   app: App) {
   return (
-    Div('AppWindow', e => {
-      e.className = style.class.AppWindow
-      Div('TopLine', e => { e.className = style.class.TopLine })
-      RxDiv('Body', null, e => {
-        e.className = style.class.Body
-        PageView(app.homePage)
-      })
+    RxDiv('Body', null, e => {
+      e.className = style.class.Body
+      PageView(app.homePage)
     })
   )
 }
