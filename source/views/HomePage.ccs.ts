@@ -16,7 +16,7 @@ export const style = restyler( () => {
     InputArea: css`
       font-family: Comic Sans MS, Comic Sans, cursive;
       margin: 0;
-      height: 45px;
+      height: 55px;
       background-color: rgba(0,0,0,0.6);
       backdrop-filter: blur(5px);
       color: whitesmoke;
@@ -33,7 +33,7 @@ export const style = restyler( () => {
     Task: css`
       font-family: Comic Sans MS, Comic Sans, cursive;
       margin-top: 20px;
-      height: 45px;
+      height: 55px;
       background-color: rgba(0,0,0,0.6);
       backdrop-filter: blur(5px);
       color: whitesmoke;
