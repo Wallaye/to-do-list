@@ -9,12 +9,11 @@ import { style } from './Page.css'
 
 export function PageView(page: Page, renderer?: Callback<HTMLElement>){
   return (
-    Div('PageView-' + page.pagePath, e => {
-      Div('Content', e => {
-        e.id = 'Content'
-        if (renderer)
-          renderer(e)
-      })
+    Div('Content', e => {
+      e.id = 'Content'
+      e.className = style.class.Content
+      if (renderer)
+        renderer(e)
     })
   )
 }

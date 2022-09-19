@@ -12,6 +12,9 @@ export const style = restyler(() => {
     Page: css`
     `,
     Content: css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
     `,
     Input: css`
     `,
