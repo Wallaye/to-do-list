@@ -13,5 +13,7 @@ export const style = restyler(() => {
     `,
     Content: css`
     `,
+    Input: css`
+    `,
   }
 })

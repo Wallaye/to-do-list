@@ -3,14 +3,18 @@
 // Licensed under the Apache License, Version 2.0.
 //--------------------------------------------------------------------------------------------------
 
-import { Div, Customize } from 'reactronic-dom'
+import {Div, Customize, Callback} from 'reactronic-dom'
 import { Page } from '../models/Page'
 import { style } from './Page.css'
 
-export function PageView(page: Page, customizeContent?: Customize<HTMLElement>, customizeRightSide?: Customize<HTMLElement>) {
+export function PageView(page: Page, renderer?: Callback<HTMLElement>){
   return (
     Div('PageView-' + page.pagePath, e => {
-      e.className = style.class.Page
-    }).wrapWith(customizeRightSide)
+      Div('Content', e => {
+        e.id = 'Content'
+        if (renderer)
+          renderer(e)
+      })
+    })
   )
 }

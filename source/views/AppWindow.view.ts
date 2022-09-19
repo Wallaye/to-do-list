@@ -8,13 +8,14 @@ import { App } from '../models/App'
 import { style } from './AppWindow.css'
 import { cx } from '@emotion/css'
 import {PageView} from './Page.view'
+import {HomePageView} from './HomePage.view'
 
 export function AppWindow(
   app: App) {
   return (
-    RxDiv('Body', null, e => {
+    Div('Body', e => {
       e.className = style.class.Body
-      PageView(app.homePage)
+      HomePageView(app)
     })
   )
 }
