@@ -3,6 +3,7 @@ import {App} from '../models/App'
 import {PageView} from './Page.view'
 import {style} from './HomePage.ccs'
 import {Task} from '../models/Task'
+import {NewTaskLineView} from './NewTaskLine'
 
 export  function HomePageView(app : App, task : Task) {
   return (
@@ -15,18 +16,7 @@ export  function HomePageView(app : App, task : Task) {
           console.log(task.content)
         })
       })
-      Div('Input', e => {
-        let input: HTMLInputElement
-        e.className = style.class.InputDiv
-        e.id = 'InputDiv'
-        RxInput('Text',null, e => {
-          input = e
-          e.type = 'text'
-          e.className = style.class.InputArea
-          e.placeholder = 'Enter the text'
-          e.onchange = () => task.setContent(e.value)
-        })
-      })
+      NewTaskLineView(app, task)
     })
   )
 }

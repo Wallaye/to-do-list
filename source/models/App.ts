@@ -13,12 +13,13 @@ export const ProjectLink = 'https://github.com/nezaboodka/nevod'
 export class App extends ReactiveObject {
   @isnonreactive readonly version: string
   @isnonreactive readonly homePage: Page;
-  task : Task;
+  taskList: Task[] = []
+  newTask : Task;
 
   constructor(version: string) {
     super()
     this.version = version
     this.homePage = new Page('/home')
-    this.task = new Task('')
+    this.newTask = new Task('')
   }
 }

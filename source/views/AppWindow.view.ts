@@ -16,7 +16,7 @@ export function AppWindow(
   return (
     Div('Body', e => {
       e.className = style.class.Body
-      HomePageView(app, app.task)
+      HomePageView(app, app.newTask)
     })
   )
 }
