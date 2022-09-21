@@ -43,11 +43,17 @@ export const style = restyler(() => {
       justify-content: center;
       align-items: center;
       color: whitesmoke;
-      font-size: 40px;
+      font-size: 30px;
       cursor: pointer;
+      i{
+        color: white;
+      }
       :hover, :focus {
         background-color: rgba(221,255,255,0.25);
         transition-duration: 0.2s;
+        i{
+          color: aqua;
+        }
       }
     `
   }

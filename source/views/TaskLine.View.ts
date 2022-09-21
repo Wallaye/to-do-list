@@ -9,18 +9,24 @@ export function TaskLineView(app: App, task: Task){
     RxLI('TaskDiv' + task.id, null, e => {
       e.className = style.class.TaskLineDiv
       RxDiv('DivContent+' + task.id, null, e => {
-        console.log('div')
         e.textContent = task.content
         e.className = style.class.DivContent
       })
       Div('Checked' + task.id, e => {
-        e.className = style.class.CheckedDiv
+        e.className = style.class.CheckBtn
         e.id = 'Checked' + task.id
         e.onclick = () => {
           task.changeCompleted()
         }
-        I('Icon' + task.id, e => {
+        I('CheckIcon' + task.id, e => {
           e.className = 'fa-solid fa-check'
+        })
+      })
+      Div('TrashButton' + task.id, e=> {
+        e.className = style.class.TrashBtn
+        e.id = 'TrashBtn' + task.id
+        I('TrashIcon' + task.id, e => {
+          e.className = 'fa-solid fa-trash'
         })
       })
     })

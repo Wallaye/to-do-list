@@ -1,6 +1,6 @@
 import {App} from '../models/App'
 import {Task} from '../models/Task'
-import {Div, HtmlSensors, Input, RxInput} from 'reactronic-dom'
+import {Div, HtmlSensors, I, Input, RxInput} from 'reactronic-dom'
 import {style} from './NewTaskLine.css'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -25,7 +25,6 @@ export function NewTaskLineView(app: App, newTask : Task){
       Div('AddButton', e => {
         const button : HTMLDivElement = e
         e.className = style.class.AddButton
-        e.textContent='+'
         button.onclick = () => {
           if (input.value.trim() != '')
           {
@@ -33,6 +32,9 @@ export function NewTaskLineView(app: App, newTask : Task){
             input.value = ''
           }
         }
+        I('AddIcon', e => {
+          e.className = 'fa-solid fa-plus'
+        })
       })
     })
   )

@@ -1,7 +1,7 @@
 import {restyler} from 'reactronic-dom'
 import {css} from '@emotion/css'
 
-export  const style = restyler(()=> {
+export const style = restyler( () => {
   return{
     TaskLineDiv:css`
       display: flex;
@@ -14,7 +14,7 @@ export  const style = restyler(()=> {
     TrashBtn: css`
       width: 55px;
       height: 55px;
-      background-color: rgba(221,255,255,0.6);
+      background-color: rgba(189,236,182,0.6);
       backdrop-filter: blur(5px);
       border-radius: 0 10px 10px 0;
       display: flex;
@@ -29,18 +29,18 @@ export  const style = restyler(()=> {
         i{
           color: rgb(237,2,51);
         }
-        background-color: rgba(221,255,255,0.25);
+        background-color: rgba(189,236,182,0.25);
       }
     `,
     CheckBtn: css`
       width: 55px;
       height: 55px;
-      background-color: rgba(221,255,255,0.6);
+      background-color: rgba(189,236,182,0.6);
       backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 40px;
+      font-size: 30px;
       cursor: pointer;
       i{
         color: white;
@@ -49,10 +49,10 @@ export  const style = restyler(()=> {
         i{
           color: rgb(189,236,182)
         }
-        background-color: rgba(221,255,255,0.25);
+        background-color: rgba(189,236,182,0.25);
       }
     `,
-    DivContent:css`
+    DivContentCompleted:css`
       font-family: Comic Sans MS, Comic Sans, cursive;
       font-size: 24px;
       height: 43px;
@@ -60,12 +60,12 @@ export  const style = restyler(()=> {
       display: flex;
       align-items: center;
       padding: 6px 10px;
-      background-color: rgba(221,255,255,0.6);
+      background-color: rgba(189,236,182,0.6);
       backdrop-filter: blur(5px);
       border-radius: 10px 0 0 10px;
       width: calc(100vw - 175px);
       :hover {
-        background-color: rgba(221,255,255,0.25);
+        background-color: rgba(189,236,182,0.25);
       }
     `
   }
