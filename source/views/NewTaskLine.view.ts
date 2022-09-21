@@ -15,22 +15,22 @@ export function NewTaskLineView(app: App, newTask : Task){
         e.type = 'text'
         e.className = style.class.InputArea
         e.placeholder = 'Enter the text...'
-        input.onchange = () => {
-          newTask.setContent(e.value)
-        }
-        input.dataForSensor.keyboard = () => {
-          newTask.setContent(e.value)
+        e.onkeydown = (event) => {
+          if (event.code == 'Enter'){
+            if (input.value.trim() != ''){
+              app.addTask(input.value)
+            }
+            input.value = ''
+          }
         }
       })
       Div('AddButton', e => {
-        const button : HTMLDivElement = e
         e.className = style.class.AddButton
-        button.onclick = () => {
-          if (input.value.trim() != '')
-          {
+        e.onclick = () => {
+          if (input.value.trim() != ''){
             app.addTask(input.value)
-            input.value = ''
           }
+          input.value = ''
         }
         I('AddIcon', e => {
           e.className = 'fa-solid fa-plus'
