@@ -6,6 +6,7 @@
 import {ReactiveObject, reaction, Transaction, isnonreactive, nonreactive, transaction} from 'reactronic'
 import { Page } from './Page'
 import {Task} from './Task'
+import {HtmlSensors} from 'reactronic-dom'
 
 
 export const ProjectLink = 'https://github.com/nezaboodka/nevod'

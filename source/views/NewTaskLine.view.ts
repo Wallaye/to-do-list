@@ -14,12 +14,12 @@ export function NewTaskLineView(app: App, newTask : Task){
         input = e
         e.type = 'text'
         e.className = style.class.InputArea
-        e.placeholder = 'Enter the text'
+        e.placeholder = 'Enter the text...'
         input.onchange = () => {
           newTask.setContent(e.value)
         }
         input.dataForSensor.keyboard = () => {
-          console.log('a')
+          newTask.setContent(e.value)
         }
       })
       Div('AddButton', e => {

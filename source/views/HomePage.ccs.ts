@@ -20,17 +20,6 @@ export const style = restyler( () => {
       :hover {
         background-color: rgba(221,255,255,0.25);
       }
-    `,
-    TaskList: css`
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    `,
-    CompletedLabel: css`
-      align-self: flex-start;
-      margin: 10px 0;
-      color: white;
-      font-size: 24px;
     `
   }
 })

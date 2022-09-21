@@ -4,6 +4,8 @@ import {App} from './App'
 
 
 export  class  Task extends ReactiveObject{
+  @isnonreactive id: number
+  @isnonreactive static nextId : number = 0
   content : string
   isCompleted : boolean
 
@@ -11,6 +13,7 @@ export  class  Task extends ReactiveObject{
     super()
     this.content = content
     this.isCompleted = false
+    this.id = Task.nextId++
   }
   @transaction
   setContent(content: string | null):void {
