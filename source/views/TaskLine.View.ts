@@ -25,6 +25,7 @@ export function TaskLineView(app: App, task: Task){
       Div('TrashButton' + task.id, e=> {
         e.className = style.class.TrashBtn
         e.id = 'TrashBtn' + task.id
+        e.onclick = () =>  app.deleteTask(task)
         I('TrashIcon' + task.id, e => {
           e.className = 'fa-solid fa-trash'
         })
