@@ -1,6 +1,6 @@
 import {App} from '../models/App'
 import {Task} from '../models/Task'
-import {Div, RxDiv, RxLI} from 'reactronic-dom'
+import {Div, I, RxDiv, RxLI} from 'reactronic-dom'
 import {style} from './TaskLine.css'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -18,6 +18,9 @@ export function CompletedTaskLineView(app: App, task: Task){
         e.onclick = () => {
           task.changeCompleted()
         }
+        I('Icon' + task.id, e => {
+          e.className = 'fa-solid fa-rotate-left'
+        })
       })
     })
   )

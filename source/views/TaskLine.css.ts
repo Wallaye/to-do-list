@@ -22,11 +22,17 @@ export  const style = restyler(()=> {
       align-items: center;
       font-size: 40px;
       cursor: pointer;
-      background-image: url('../assets/checked.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 24px 24px;
+      //background-image: url('../assets/checked.png');
+      //background-repeat: no-repeat;
+      //background-position: center center;
+      //background-size: 24px 24px;
+      i{
+        color: white;
+      }
       :hover, :focus {
+        i{
+          color: rgb(189,236,182)
+        }
         background-color: rgba(221,255,255,0.25);
       }
     `,
@@ -61,12 +67,15 @@ export  const style = restyler(()=> {
       align-items: center;
       font-size: 40px;
       cursor: pointer;
-      background-image: url('../assets/checked.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 24px 24px;
+      i{
+        color: white;
+        font-size: 30px;
+      }
       :hover, :focus {
         background-color: rgba(189,236,182,0.25);
+        i{
+          color: rgb(189,236,182);
+        }
       }
     `,
     DivContentCompleted:css`
