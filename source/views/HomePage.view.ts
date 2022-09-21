@@ -10,8 +10,11 @@ import {TaskListView} from './TaskList.View'
 export  function HomePageView(app : App, task : Task) {
   return (
     PageView(app.homePage, e => {
-      TaskListView(app, false)
-      TaskListView(app, true)
+      Div('TaskLists', e =>{
+        e.className = style.class.TaskLists
+        TaskListView(app, false)
+        TaskListView(app, true)
+      })
       NewTaskLineView(app, task)
     })
   )

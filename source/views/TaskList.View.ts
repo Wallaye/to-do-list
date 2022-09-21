@@ -2,6 +2,7 @@ import {App} from '../models/App'
 import {Div, RxUL} from 'reactronic-dom'
 import {TaskLineView} from './TaskLine.view'
 import {style} from './TaskList.css'
+import {CompletedTaskLineView} from './CompletedTask.View'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function TaskListView(app: App, completed: boolean) {
@@ -17,7 +18,10 @@ export function TaskListView(app: App, completed: boolean) {
     e.id = name
     app.taskList.forEach((element) => {
       if(element.isCompleted == completed) {
-        TaskLineView(app, element)
+        if (!completed)
+          TaskLineView(app, element)
+        else
+          CompletedTaskLineView(app, element)
         console.log(element.id,' ',element.content,' ',element.isCompleted)
       }
     })

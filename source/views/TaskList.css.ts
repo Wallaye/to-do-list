@@ -7,6 +7,8 @@ export const style = restyler(() => {
       display: flex;
       justify-content: center;
       flex-direction: column;
+      margin-top: 15px;
+      padding: 20px;
     `,
     CompletedLabel: css`
       align-self: flex-start;
