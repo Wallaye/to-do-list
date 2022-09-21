@@ -24,6 +24,7 @@ export function CompletedTaskLineView(app: App, task: Task){
       })
       Div('TrashBtn' + task.id, e => {
         e.className = style.class.TrashBtn
+        e.onclick = () => app.deleteTask(task)
         I('TrashIcon' + task.id, e =>{
           e.className = 'fa-solid fa-trash'
         })

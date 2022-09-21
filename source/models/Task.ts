@@ -25,5 +25,3 @@ export  class  Task extends ReactiveObject{
     this.isCompleted = !this.isCompleted
   }
 }
-
-

@@ -34,10 +34,7 @@ export class App extends ReactiveObject {
   @transaction
   deleteTask(task : Task) : void{
     this.taskList = this.taskList.toMutable()
-    this.taskList.slice(this.taskList.indexOf(task), 1)
-    this.taskList.forEach((e) => {
-      console.log(e.content,' ',e.id)
-    })
+    this.taskList.splice(this.taskList.indexOf(task), 1)
   }
   @reaction
   updateTasks() : void {
