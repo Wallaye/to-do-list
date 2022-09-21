@@ -7,9 +7,9 @@ export const style = restyler( () => {
       font-family: Comic Sans MS, Comic Sans, cursive;
       margin-top: 20px;
       height: 55px;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(221,255,255,0.6);
       backdrop-filter: blur(5px);
-      color: whitesmoke;
+      color: rgb(60,60,60);
       border: none;
       border-radius: 10px;
       width: calc(100vw - 100px);
@@ -18,8 +18,19 @@ export const style = restyler( () => {
       align-items: center;
       padding-left: 10px;
       :hover {
-        background-color: rgba(0,0,0,0.25);
+        background-color: rgba(221,255,255,0.25);
       }
+    `,
+    TaskList: css`
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    `,
+    CompletedLabel: css`
+      align-self: flex-start;
+      margin: 10px 0;
+      color: white;
+      font-size: 24px;
     `
   }
 })

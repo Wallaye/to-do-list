@@ -17,9 +17,9 @@ export const style = restyler(() => {
       font-family: Comic Sans MS, Comic Sans, cursive;
       margin: 0;
       height: 55px;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(221,255,255,0.6);
       backdrop-filter: blur(5px);
-      color: whitesmoke;
+      color: rgb(60,60,60);
       border: none;
       border-radius: 10px 0 0 10px;
       width: calc(100vw - 100px);
@@ -27,13 +27,16 @@ export const style = restyler(() => {
       vertical-align: middle;
       padding: 6px 10px;
       :hover, :focus {
-        background-color: rgba(0,0,0,0.25);
+        background-color: rgba(221,255,255,0.25);
+        transition-duration: 0.2s;
       }
+      ::placeholder {
+        color: rgb(230,231,232);
     `,
     AddButton: css`
       height: 55px;
       width: 55px;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(221,255,255,0.6);
       backdrop-filter: blur(5px);
       border-radius: 0 10px 10px 0;
       display: flex;
@@ -43,7 +46,8 @@ export const style = restyler(() => {
       font-size: 40px;
       cursor: pointer;
       :hover, :focus {
-        background-color: rgba(0,0,0,0.25);
+        background-color: rgba(221,255,255,0.25);
+        transition-duration: 0.2s;
       }
     `
   }

@@ -18,14 +18,20 @@ export function NewTaskLineView(app: App, newTask : Task){
         input.onchange = () => {
           newTask.setContent(e.value)
         }
+        input.dataForSensor.keyboard = () => {
+          console.log('a')
+        }
       })
       Div('AddButton', e => {
-        const button:HTMLDivElement = e
+        const button : HTMLDivElement = e
         e.className = style.class.AddButton
         e.textContent='+'
-        e.dataForSensor
         button.onclick = () => {
-          app.taskList.push(newTask)
+          if (input.value.trim() != '')
+          {
+            app.addTask(input.value)
+            input.value = ''
+          }
         }
       })
     })
