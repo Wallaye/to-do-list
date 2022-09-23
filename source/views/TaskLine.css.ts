@@ -11,6 +11,26 @@ export  const style = restyler(()=> {
       left: 0;
       width: 100%;
     `,
+    EditBtn: css`
+      width: 55px;
+      height: 55px;
+      background-color: rgba(221, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      cursor: pointer;
+      i {
+        color: white;
+      }
+      :hover, :focus {
+        i {
+          color: rgb(237, 96, 2);
+        }
+        background-color: rgba(221, 255, 255, 0.25);
+      }
+    `,
     TrashBtn: css`
       width: 55px;
       height: 55px;
@@ -63,7 +83,7 @@ export  const style = restyler(()=> {
       background-color: rgba(221,255,255,0.6);
       backdrop-filter: blur(5px);
       border-radius: 10px 0 0 10px;
-      width: calc(100vw - 175px);
+      width: calc(100vw - 230px);
       :hover {
         background-color: rgba(221,255,255,0.25);
       }

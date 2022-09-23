@@ -12,6 +12,16 @@ export function TaskLineView(app: App, task: Task){
         e.textContent = task.content
         e.className = style.class.DivContent
       })
+      Div('Edit' + task.id, e => {
+        e.className = style.class.EditBtn
+        e.id = 'Edit' + task.id
+        e.onclick = () => {
+          console.log('edit')
+        }
+        I('EditIcon', e => {
+          e.className = 'fa-solid fa-pen-to-square'
+        })
+      })
       Div('Checked' + task.id, e => {
         e.className = style.class.CheckBtn
         e.id = 'Checked' + task.id
