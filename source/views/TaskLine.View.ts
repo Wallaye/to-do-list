@@ -12,6 +12,7 @@ export function TaskLineView(app: App, task: Task){
         RxDiv('DivContent+' + task.id, null, e => {
           e.textContent = task.content
           e.className = style.class.DivContent
+          e.ondblclick = () => app.editTask(task)
         })
         Div('Edit' + task.id, e => {
           e.className = style.class.EditBtn
