@@ -8,11 +8,13 @@ export  class  Task extends ReactiveObject{
   @isnonreactive static nextId : number = 0
   content : string
   isCompleted : boolean
+  isEdit : boolean
 
   constructor(content: string) {
     super()
     this.content = content
     this.isCompleted = false
+    this.isEdit = false
     this.id = Task.nextId++
   }
   @transaction
