@@ -1,6 +1,6 @@
 import {App} from '../models/App'
 import {Task} from '../models/Task'
-import {Div, HtmlSensors, I, Img, Reaction, RxDiv, RxLI} from 'reactronic-dom'
+import {Div, I, RxDiv, RxLI} from 'reactronic-dom'
 import {style} from './TaskLine.css'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -46,16 +46,17 @@ export function TaskLineView(app: App, task: Task){
         let inputArea : HTMLDivElement
         Div('EditableTask' + task.id, e => {
           inputArea = e
-          inputArea.contentEditable = 'true'
+          e.contentEditable = 'true'
           e.focus()
-          e.innerHTML = task.content
+          e.textContent = task.content
           e.className = style.class.DivContent
           e.style.width = 'calc(100vw - 120px)'
           e.id = 'EditableTask' + task.id
           e.onkeydown = (event) => {
             if (event.code == 'Enter'){
-              if (inputArea.innerHTML.trim() != ''){
-                app.editTask(task, inputArea.innerHTML)
+              event.preventDefault()
+              if (inputArea.textContent !== null && inputArea.textContent.trim() !== ''){
+                app.editTask(task, inputArea.textContent)
               }
             }
           }
@@ -66,8 +67,8 @@ export function TaskLineView(app: App, task: Task){
           e.style.fontSize = '30px'
           e.id = 'Submit' + task.id
           e.onclick = () => {
-            if (inputArea.innerHTML.trim() !== '') {
-              app.editTask(task, inputArea.innerHTML)
+            if (inputArea.textContent !== null && inputArea.textContent.trim() !== '') {
+              app.editTask(task, inputArea.textContent)
             }
           }
           I('SubmitIcon' + task.id, e => {

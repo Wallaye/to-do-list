@@ -17,6 +17,7 @@ export function NewTaskLineView(app: App, newTask : Task){
         e.placeholder = 'Enter the text...'
         e.onkeydown = (event) => {
           if (event.code == 'Enter'){
+            event.preventDefault()
             if (input.value.trim() != ''){
               app.addTask(input.value)
             }

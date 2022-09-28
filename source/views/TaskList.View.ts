@@ -22,7 +22,6 @@ export function TaskListView(app: App, completed: boolean) {
           TaskLineView(app, element)
         else
           CompletedTaskLineView(app, element)
-        console.log(element.id,' ',element.content,' ',element.isCompleted)
       }
     })
   })
