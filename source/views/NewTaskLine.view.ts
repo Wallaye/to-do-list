@@ -4,7 +4,7 @@ import {Div, HtmlSensors, I, Input, RxInput} from 'reactronic-dom'
 import {style} from './NewTaskLine.css'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function NewTaskLineView(app: App, newTask : Task){
+export function NewTaskLineView(app: App){
   return(
     Div('Input', e => {
       let input: HTMLInputElement

@@ -2,26 +2,27 @@ import {App} from '../models/App'
 import {Div, RxUL} from 'reactronic-dom'
 import {TaskLineView} from './TaskLine.view'
 import {style} from './TaskList.css'
-import {CompletedTaskLineView} from './CompletedTask.View'
+import {Task} from '../models/Task'
+import {IButtonRender} from '../models/IButtonRender'
+import {EditButtonView} from './buttons/EditButton.view'
+import {CheckButtonView} from './buttons/CheckButton.view'
+import {TrashButtonView} from './buttons/TrashButton.view'
+import {SubmitButtonView} from './buttons/SubmitButton.view'
+import {ButtonRenderer} from '../models/ButtonRenderer'
+import {UncheckButtonView} from './buttons/UncheckButton.view'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function TaskListView(app: App, completed: boolean) {
-  const name: string = completed? 'CompletedTaskList' : 'TaskList'
-  RxUL(name,null, e => {
-    if(app.completedTasks > 0 && completed){
-      Div('CompletedLable', e => {
-        e.className = style.class.CompletedLabel
-        e.textContent = 'Completed tasks:'
-      })
-    }
+export function TaskListView(app: App, taskList: Task[], completed: boolean) {
+  const name: string = completed ? 'CompletedTaskList' : 'TaskList'
+  RxUL(name, taskList, e => {
     e.className = style.class.TaskList
     e.id = name
-    app.taskList.forEach((element) => {
-      if(element.isCompleted == completed) {
-        if (!completed)
-          TaskLineView(app, element)
-        else
-          CompletedTaskLineView(app, element)
+    taskList.forEach((element) => {
+      if (element.isCompleted == completed) {
+        const render: IButtonRender[] = element.isEdit ? [SubmitButtonView] :
+          element.isCompleted ? [UncheckButtonView, TrashButtonView] : [EditButtonView, CheckButtonView, TrashButtonView]
+        const renderer: ButtonRenderer = new ButtonRenderer(app, element, render)
+        TaskLineView(element, renderer)
       }
     })
   })

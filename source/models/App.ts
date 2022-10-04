@@ -3,17 +3,14 @@
 // Licensed under the Apache License, Version 2.0.
 //--------------------------------------------------------------------------------------------------
 
-import {ReactiveObject, reaction, Transaction, isnonreactive, nonreactive, transaction} from 'reactronic'
+import {ReactiveObject, reaction, isnonreactive, nonreactive, transaction} from 'reactronic'
 import {Page} from './Page'
 import {Task} from './Task'
-import * as JSDOM from 'jsdom'
-
-export const ProjectLink = 'https://github.com/nezaboodka/nevod'
 
 export class App extends ReactiveObject {
   @isnonreactive readonly version: string
   @isnonreactive readonly homePage: Page
-  @isnonreactive completedTasks = 0
+  completedTasks = 0
   taskList: Task[] = []
   newTask: Task
 
@@ -46,14 +43,20 @@ export class App extends ReactiveObject {
   }
 
   @transaction
-  editTask(task: Task, newContent?: string): void {
+  submitTaskChange(task: Task): void {
     if (task.isEdit) {
-      if (newContent != null) {
-        task.content = newContent
+      if (task.content != '') {
+        task.isEdit = false
       }
-      task.isEdit = false
     } else {
       task.isEdit = true
+    }
+  }
+
+  @transaction
+  changeTask(task: Task, newContent?: string): void {
+    if (newContent != null) {
+      task.content = newContent
     }
   }
 

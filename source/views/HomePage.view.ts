@@ -7,15 +7,21 @@ import {NewTaskLineView} from './NewTaskLine.view'
 import {TaskLineView} from './TaskLine.View'
 import {TaskListView} from './TaskList.View'
 
-export  function HomePageView(app : App, task : Task) {
+export function HomePageView(app: App) {
   return (
     PageView(app.homePage, e => {
-      Div('TaskLists', e =>{
+      RxDiv('TaskLists', null, e => {
         e.className = style.class.TaskLists
-        TaskListView(app, false)
-        TaskListView(app, true)
+        TaskListView(app, app.taskList, false)
+        if (app.completedTasks > 0) {
+          Div('CompletedLable', e => {
+            e.className = style.class.CompletedLabel
+            e.textContent = 'Completed tasks:'
+          })
+          TaskListView(app, app.taskList, true)
+        }
       })
-      NewTaskLineView(app, task)
+      NewTaskLineView(app)
     })
   )
 }

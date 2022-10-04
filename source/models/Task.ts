@@ -3,12 +3,12 @@ import * as Console from 'console'
 import {App} from './App'
 
 
-export  class  Task extends ReactiveObject{
+export class Task extends ReactiveObject {
   @isnonreactive id: number
-  @isnonreactive static nextId : number = 0
-  content : string
-  isCompleted : boolean
-  isEdit : boolean
+  @isnonreactive static nextId: number = 0
+  content: string
+  isCompleted: boolean
+  isEdit: boolean
 
   constructor(content: string) {
     super()
@@ -17,13 +17,15 @@ export  class  Task extends ReactiveObject{
     this.isEdit = false
     this.id = Task.nextId++
   }
+
   @transaction
-  setContent(content: string | null):void {
+  setContent(content: string | null): void {
     if (content != null)
       this.content = content
   }
+
   @transaction
-  changeCompleted():void {
+  changeCompleted(): void {
     this.isCompleted = !this.isCompleted
   }
 }
