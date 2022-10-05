@@ -1,6 +1,6 @@
-import {App} from './App'
 import {Task} from './Task'
+import {ReactiveTaskList} from './TaskList'
 
 export interface IButtonRender {
-  (app: App, task: Task): void
+  (taskList: ReactiveTaskList, task: Task): void
 }

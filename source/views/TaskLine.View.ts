@@ -1,6 +1,5 @@
-import {App} from '../models/App'
 import {Task} from '../models/Task'
-import {Div, Reaction, RxDiv, RxInput, RxLI} from 'reactronic-dom'
+import {Div, RxInput, RxLI} from 'reactronic-dom'
 import {style} from './TaskLine.css'
 import {ButtonRenderer} from '../models/ButtonRenderer'
 
@@ -35,7 +34,7 @@ export function TaskLineView(task: Task, renderer: ButtonRenderer) {
           }
         }
       })
-      RxDiv('Buttons' + task.id, task.isEdit, e => {
+      Div('Buttons' + task.id, e => {
         e.className = style.class.DivButtons
         e.id = 'Buttons'
         renderer.render()

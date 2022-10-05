@@ -1,11 +1,10 @@
 import {IButtonRender} from '../../models/IButtonRender'
-import {App} from '../../models/App'
 import {Task} from '../../models/Task'
-import {Div, I, RxDiv} from 'reactronic-dom'
+import {I, RxDiv} from 'reactronic-dom'
 import {style} from './Buttons.css'
-import {Rx} from 'reactronic'
+import {ReactiveTaskList} from '../../models/TaskList'
 
-export const SubmitButtonView: IButtonRender = function (app: App, task: Task) {
+export const SubmitButtonView: IButtonRender = function (taskList:ReactiveTaskList, task: Task) {
   return (
     RxDiv('Submit' + task.id, null, e => {
       e.className = task.isCompleted ? style.class.CheckBtnChecked : style.class.CheckBtn
@@ -13,7 +12,7 @@ export const SubmitButtonView: IButtonRender = function (app: App, task: Task) {
       e.style.fontSize = '30px'
       e.id = 'Submit' + task.id
       e.onclick = () => {
-        app.submitTaskChange(task)
+        taskList.submitTaskChange(task)
       }
       I('SubmitIcon' + task.id, e => {
         e.className = 'fa-solid fa-spell-check'

@@ -1,10 +1,9 @@
-import {App} from '../models/App'
-import {Task} from '../models/Task'
-import {Div, HtmlSensors, I, Input, RxInput} from 'reactronic-dom'
+import {Div, I, Input} from 'reactronic-dom'
 import {style} from './NewTaskLine.css'
+import {ReactiveTaskList} from '../models/TaskList'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function NewTaskLineView(app: App){
+export function NewTaskLineView(taskList: ReactiveTaskList){
   return(
     Div('Input', e => {
       let input: HTMLInputElement
@@ -19,7 +18,7 @@ export function NewTaskLineView(app: App){
           if (event.code == 'Enter'){
             event.preventDefault()
             if (input.value.trim() != ''){
-              app.addTask(input.value)
+              taskList.addTask(input.value)
             }
             input.value = ''
           }
@@ -29,7 +28,7 @@ export function NewTaskLineView(app: App){
         e.className = style.class.AddButton
         e.onclick = () => {
           if (input.value.trim() != ''){
-            app.addTask(input.value)
+            taskList.addTask(input.value)
           }
           input.value = ''
         }

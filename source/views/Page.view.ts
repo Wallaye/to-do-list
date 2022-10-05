@@ -1,9 +1,4 @@
-//--------------------------------------------------------------------------------------------------
-// Copyright © Nezaboodka™ Software LLC. All rights reserved.
-// Licensed under the Apache License, Version 2.0.
-//--------------------------------------------------------------------------------------------------
-
-import {Div, Customize, Callback, RxDiv} from 'reactronic-dom'
+import { Callback, RxDiv} from 'reactronic-dom'
 import { Page } from '../models/Page'
 import { style } from './Page.css'
 

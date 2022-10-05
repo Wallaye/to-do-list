@@ -1,7 +1,4 @@
-import {isnonreactive, nonreactive, reaction, ReactiveObject, transaction} from 'reactronic'
-import * as Console from 'console'
-import {App} from './App'
-
+import {isnonreactive, ReactiveObject, transaction} from 'reactronic'
 
 export class Task extends ReactiveObject {
   @isnonreactive id: number
