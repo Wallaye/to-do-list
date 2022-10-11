@@ -1,9 +1,12 @@
-import {reaction, ReactiveObject, transaction} from 'reactronic'
+import {isnonreactive, reaction, ReactiveObject, transaction} from 'reactronic'
 import {Task} from './Task'
+import {style} from '../views/TaskLine.css'
 
 export class ReactiveTaskList extends ReactiveObject {
   taskList: Task[] = []
   completedTasks = 0
+  currentEditingTask : Task | null = null
+  @isnonreactive currentEditingHtml : HTMLElement | null = null
 
   constructor() {
     super()
@@ -12,9 +15,21 @@ export class ReactiveTaskList extends ReactiveObject {
       this.taskList = loadedTasks.map(x => {
         const task = new Task(x.content)
         task.isCompleted = x.isCompleted
+        task.isEdit = x.isEdit
         return task
       })
     }
+    this.findEditingTask()
+  }
+
+  findEditingTask(): void{
+    for (const taskListElement of this.taskList) {
+      if (taskListElement.isEdit){
+        this.currentEditingTask = taskListElement
+        return
+      }
+    }
+    this.currentEditingTask = null
   }
 
   @transaction
@@ -32,18 +47,29 @@ export class ReactiveTaskList extends ReactiveObject {
 
   @transaction
   beginEdit(task: Task): void {
-    if (!task.isEdit) {
+    if (this.currentEditingTask != null){
+      if (this.submitTaskChange(this.currentEditingTask)){
+        task.isEdit = true
+        this.currentEditingTask = task
+      } else {
+        this.currentEditingHtml!.scrollIntoView()
+        this.currentEditingHtml!.className = style.class.Animation
+      }
+    } else {
       task.isEdit = true
+      this.currentEditingTask = task
     }
   }
 
   @transaction
-  submitTaskChange(task: Task): void {
-    if (task.isEdit) {
-      if (task.content != '') {
-        task.isEdit = false
-      }
+  submitTaskChange(task: Task): boolean {
+    if (task.content != '') {
+      task.isEdit = false
+      this.currentEditingTask = null
+      this.currentEditingHtml = null
+      return true
     }
+    return false
   }
 
   @transaction
@@ -52,7 +78,6 @@ export class ReactiveTaskList extends ReactiveObject {
       task.content = newContent
     }
   }
-
   @reaction
   updateTasks(): void {
     this.completedTasks = this.taskList.filter(x => x.isCompleted).length

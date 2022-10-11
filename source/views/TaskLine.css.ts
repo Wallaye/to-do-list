@@ -1,7 +1,7 @@
 import {restyler} from 'reactronic-dom'
 import {css} from '@emotion/css'
 
-export  const style = restyler(()=> {
+export const style = restyler(()=> {
   return{
     TaskLineDiv:css`
       display: flex;
@@ -46,6 +46,22 @@ export  const style = restyler(()=> {
     `,
     DivButtons: css`
       display: flex;
+    `,
+    Animation: css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      left: 0;
+      width: 100%;
+      -webkit-animation-name: blinker;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-duration: 0.5s;
+
+      @-webkit-keyframes blinker {
+        from { opacity: 1.0; }
+        to { opacity: 0.7; }
+      }
     `
   }
 })

@@ -14,6 +14,10 @@ export class ButtonRenderer {
     }
   }
 
+  setHtmlElement(e: HTMLElement | null): void{
+    this.taskList.currentEditingHtml = e
+  }
+
   dblclickHandler: Function = (): void => {
     this.taskList.beginEdit(this.task)
   }
