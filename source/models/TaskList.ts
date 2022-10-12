@@ -1,12 +1,10 @@
-import {isnonreactive, reaction, ReactiveObject, transaction} from 'reactronic'
+import { reaction, ReactiveObject, transaction} from 'reactronic'
 import {Task} from './Task'
-import {style} from '../views/TaskLine.css'
 
 export class ReactiveTaskList extends ReactiveObject {
   taskList: Task[] = []
   completedTasks = 0
   currentEditingTask : Task | null = null
-  @isnonreactive currentEditingHtml : HTMLElement | null = null
 
   constructor() {
     super()
@@ -52,8 +50,7 @@ export class ReactiveTaskList extends ReactiveObject {
         task.isEdit = true
         this.currentEditingTask = task
       } else {
-        this.currentEditingHtml!.scrollIntoView()
-        this.currentEditingHtml!.className = style.class.Animation
+        this.currentEditingTask.taskFocus()
       }
     } else {
       task.isEdit = true
@@ -66,7 +63,6 @@ export class ReactiveTaskList extends ReactiveObject {
     if (task.content != '') {
       task.isEdit = false
       this.currentEditingTask = null
-      this.currentEditingHtml = null
       return true
     }
     return false

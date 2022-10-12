@@ -1,4 +1,5 @@
 import {isnonreactive, ReactiveObject, transaction} from 'reactronic'
+import {style} from '../views/TaskLine.css'
 
 export class Task extends ReactiveObject {
   @isnonreactive id: number
@@ -6,6 +7,7 @@ export class Task extends ReactiveObject {
   content: string
   isCompleted: boolean
   isEdit: boolean
+  @isnonreactive htmlElement : HTMLElement | null = null
 
   constructor(content: string) {
     super()
@@ -24,5 +26,12 @@ export class Task extends ReactiveObject {
   @transaction
   changeCompleted(): void {
     this.isCompleted = !this.isCompleted
+  }
+
+  taskFocus(): void {
+    if (this.htmlElement){
+      this.htmlElement.scrollIntoView()
+      this.htmlElement.className = style.class.Animation
+    }
   }
 }

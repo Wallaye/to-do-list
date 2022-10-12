@@ -10,12 +10,9 @@ export function TaskLineView(task: Task, renderer: ButtonRenderer) {
     RxLI('TaskDiv' + task.id, task.isEdit, e => {
       e.className = style.class.TaskLineDiv
       let inputArea: HTMLInputElement
+      task.htmlElement = e
       e.onclick = () => {
         e.className = style.class.TaskLineDiv
-      }
-
-      if (task.isEdit){
-        renderer.setHtmlElement(e)
       }
       RxInput('DivContent+' + task.id, [task.isCompleted, task.isEdit], e => {
         const className: string = task.isCompleted ? style.class.DivContentCompleted : style.class.DivContent
