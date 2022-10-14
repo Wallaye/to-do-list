@@ -1,5 +1,5 @@
 import {Task} from '../models/Task'
-import {Div, RxInput, RxLI} from 'reactronic-dom'
+import {Div, Input, RxInput, RxLI} from 'reactronic-dom'
 import {style} from './TaskLine.css'
 import {ButtonRenderer} from '../models/ButtonRenderer'
 
@@ -7,14 +7,17 @@ import {ButtonRenderer} from '../models/ButtonRenderer'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function TaskLineView(task: Task, renderer: ButtonRenderer) {
   return (
-    RxLI('TaskDiv' + task.id, task.isEdit, e => {
+    RxLI('TaskDiv' + task.id, task, e => {
       e.className = style.class.TaskLineDiv
+      e.draggable = true
+      e.dataForSensor.htmlDraggable = !task.isCompleted && !task.isEdit ? task : undefined
+      e.dataForSensor.htmlDrag = !task.isCompleted && !task.isEdit ? task : undefined
       let inputArea: HTMLInputElement
       task.htmlElement = e
       e.onclick = () => {
         e.className = style.class.TaskLineDiv
       }
-      RxInput('DivContent+' + task.id, [task.isCompleted, task.isEdit], e => {
+      Input('DivContent+' + task.id, e => {
         const className: string = task.isCompleted ? style.class.DivContentCompleted : style.class.DivContent
         inputArea = e
         e.value = task.content

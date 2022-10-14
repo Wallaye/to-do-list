@@ -1,7 +1,7 @@
-import {isnonreactive, ReactiveObject} from 'reactronic'
+import {ObservableObject, unobservable} from 'reactronic'
 
-export class Page extends ReactiveObject {
-  @isnonreactive readonly pagePath: string
+export class Page extends ObservableObject {
+  @unobservable readonly pagePath: string
   content: string
   isActive: boolean
 

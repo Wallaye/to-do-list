@@ -1,13 +1,16 @@
-import { reaction, ReactiveObject, transaction} from 'reactronic'
+import {unobservable, reaction, ObservableObject, transaction} from 'reactronic'
 import {Task} from './Task'
+import {HtmlSensors} from 'reactronic-dom'
 
-export class ReactiveTaskList extends ReactiveObject {
+export class ReactiveTaskList extends ObservableObject {
   taskList: Task[] = []
   completedTasks = 0
-  currentEditingTask : Task | null = null
+  currentEditingTask: Task | null = null
+  sensors: HtmlSensors
 
   constructor() {
     super()
+    this.sensors = new HtmlSensors()
     const loadedTasks = JSON.parse(localStorage.getItem('tasks') as string) as Task[]
     if (loadedTasks !== null) {
       this.taskList = loadedTasks.map(x => {
@@ -20,9 +23,9 @@ export class ReactiveTaskList extends ReactiveObject {
     this.findEditingTask()
   }
 
-  findEditingTask(): void{
+  findEditingTask(): void {
     for (const taskListElement of this.taskList) {
-      if (taskListElement.isEdit){
+      if (taskListElement.isEdit) {
         this.currentEditingTask = taskListElement
         return
       }
@@ -45,8 +48,8 @@ export class ReactiveTaskList extends ReactiveObject {
 
   @transaction
   beginEdit(task: Task): void {
-    if (this.currentEditingTask != null){
-      if (this.submitTaskChange(this.currentEditingTask)){
+    if (this.currentEditingTask != null) {
+      if (this.submitTaskChange(this.currentEditingTask)) {
         task.isEdit = true
         this.currentEditingTask = task
       } else {
@@ -74,10 +77,52 @@ export class ReactiveTaskList extends ReactiveObject {
       task.content = newContent
     }
   }
+
   @reaction
   updateTasks(): void {
     this.completedTasks = this.taskList.filter(x => x.isCompleted).length
     localStorage.setItem('tasks', JSON.stringify(this.taskList))
   }
 
+  swapTasks(currentId: number, nextId: number): void {
+    if (currentId !== nextId) {
+      this.taskList = this.taskList.toMutable()
+      const task: Task = this.taskList[currentId]
+      this.taskList.splice(currentId, 1)
+      const list = this.taskList.slice(nextId)
+      this.taskList.splice(nextId)
+      this.taskList.push(task)
+      this.taskList = this.taskList.concat(list)
+    }
+  }
+
+  @reaction
+  dragAndDrop(): void {
+    console.log('dnd')
+    const drag = this.sensors.htmlDrag
+    const task = drag.draggable as Task | undefined
+    console.log(task)
+    if (task) {
+      if (drag.dragStarted) {
+        drag.effectAllowed = 'copy'
+        if (drag.draggingOver) {
+          if (drag.dragTarget instanceof Task) {
+            drag.dropAllowed = true
+            drag.dropEffect = 'copy'
+          } else {
+            drag.dropAllowed = false
+          }
+        }
+      }
+      if (drag.dragFinished) {
+        if (drag.dropped) {
+          if (drag.dragTarget instanceof Task) {
+            const currentId = this.taskList.indexOf(task)
+            const nextId = this.taskList.indexOf(drag.dragTarget as Task)
+            this.swapTasks(currentId, nextId)
+          }
+        }
+      }
+    }
+  }
 }

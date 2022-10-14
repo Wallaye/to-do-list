@@ -1,13 +1,13 @@
-import {isnonreactive, ReactiveObject, transaction} from 'reactronic'
+import {ObservableObject, transaction, unobservable} from 'reactronic'
 import {style} from '../views/TaskLine.css'
 
-export class Task extends ReactiveObject {
-  @isnonreactive id: number
-  @isnonreactive static nextId: number = 0
+export class Task extends ObservableObject {
+  @unobservable id: number
+  @unobservable static nextId: number = 0
   content: string
   isCompleted: boolean
   isEdit: boolean
-  @isnonreactive htmlElement : HTMLElement | null = null
+  @unobservable htmlElement : HTMLElement | null = null
 
   constructor(content: string) {
     super()

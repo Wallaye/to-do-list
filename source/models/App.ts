@@ -1,11 +1,11 @@
-import {ReactiveObject, isnonreactive} from 'reactronic'
+import {ObservableObject,unobservable} from 'reactronic'
 import {Page} from './Page'
 import {ReactiveTaskList} from './TaskList'
 
-export class App extends ReactiveObject {
-  @isnonreactive readonly version: string
-  @isnonreactive readonly homePage: Page
-  @isnonreactive reactiveTaskList : ReactiveTaskList
+export class App extends ObservableObject {
+  @unobservable readonly version: string
+  @unobservable readonly homePage: Page
+  @unobservable reactiveTaskList : ReactiveTaskList
 
   constructor(version: string) {
     super()
