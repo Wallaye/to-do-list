@@ -3,10 +3,10 @@ import {Task} from './Task'
 import {HtmlSensors} from 'reactronic-dom'
 
 export class ReactiveTaskList extends ObservableObject {
+  @unobservable sensors: HtmlSensors
   taskList: Task[] = []
   completedTasks = 0
   currentEditingTask: Task | null = null
-  sensors: HtmlSensors
 
   constructor() {
     super()
@@ -27,10 +27,9 @@ export class ReactiveTaskList extends ObservableObject {
     for (const taskListElement of this.taskList) {
       if (taskListElement.isEdit) {
         this.currentEditingTask = taskListElement
-        return
+        break
       }
     }
-    this.currentEditingTask = null
   }
 
   @transaction
@@ -98,10 +97,8 @@ export class ReactiveTaskList extends ObservableObject {
 
   @reaction
   dragAndDrop(): void {
-    console.log('dnd')
     const drag = this.sensors.htmlDrag
     const task = drag.draggable as Task | undefined
-    console.log(task)
     if (task) {
       if (drag.dragStarted) {
         drag.effectAllowed = 'copy'

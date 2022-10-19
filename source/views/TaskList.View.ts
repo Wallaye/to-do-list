@@ -16,6 +16,7 @@ export function TaskListView(taskList: ReactiveTaskList, completed: boolean) {
   RxUL(name, taskList, e => {
     e.className = style.class.TaskList
     e.id = name
+    taskList.sensors.listen(e, true)
     taskList.taskList.forEach((element) => {
       if (element.isCompleted == completed) {
         const render: IButtonRender[] = element.isEdit ? [SubmitButtonView] :

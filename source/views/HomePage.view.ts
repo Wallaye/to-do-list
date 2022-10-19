@@ -8,7 +8,7 @@ import {TaskListView} from './TaskList.View'
 export function HomePageView(app: App) {
   return (
     PageView(app.homePage, () => {
-      RxDiv('TaskLists', null, e => {
+      Div('TaskLists', e => {
         e.className = style.class.TaskLists
         TaskListView(app.reactiveTaskList, false)
         if (app.reactiveTaskList.completedTasks > 0) {

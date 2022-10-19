@@ -11,7 +11,7 @@ export function TaskLineView(task: Task, renderer: ButtonRenderer) {
       e.className = style.class.TaskLineDiv
       e.draggable = true
       e.dataForSensor.htmlDraggable = !task.isCompleted && !task.isEdit ? task : undefined
-      e.dataForSensor.htmlDrag = !task.isCompleted && !task.isEdit ? task : undefined
+      e.dataForSensor.htmlDrag= !task.isCompleted && !task.isEdit ? task : undefined
       let inputArea: HTMLInputElement
       task.htmlElement = e
       e.onclick = () => {
